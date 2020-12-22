@@ -1,0 +1,5 @@
+/data.db
+/openvpn-web-ui*
+/lastupdate.tmp
+go.sum
+*.vode-workspace
