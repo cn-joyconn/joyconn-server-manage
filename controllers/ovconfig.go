@@ -3,13 +3,14 @@ package controllers
 import (
 	"html/template"
 
-	config "openvpn-web-ui/lib/go-openvpn/server/config"
-	mi "openvpn-web-ui/lib/go-openvpn/server/mi"
+	config "openvpn-server-manage/go-openvpn/server/config"
+	mi "openvpn-server-manage/go-openvpn/mi"
 
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/orm"
-	lib "openvpn-web-ui/lib"
-	models "openvpn-web-ui/models"
+	"github.com/beego/beego/v2/server/web"
+	"github.com/beego/beego/v2/core/logs"
+	"github.com/beego/beego/v2/client/orm"
+	lib "openvpn-server-manage/lib"
+	models "openvpn-server-manage/models"
 )
 
 type OVConfigController struct {
@@ -37,11 +38,11 @@ func (c *OVConfigController) Get() {
 
 func (c *OVConfigController) Post() {
 	c.TplName = "ovconfig.html"
-	flash := beego.NewFlash()
+	flash := web.NewFlash()
 	cfg := models.OVConfig{Profile: "default"}
 	cfg.Read("Profile")
 	if err := c.ParseForm(&cfg); err != nil {
-		beego.Warning(err)
+		logs.Warning(err)
 		flash.Error(err.Error())
 		flash.Store(&c.Controller)
 		return
@@ -52,7 +53,7 @@ func (c *OVConfigController) Post() {
 	destPath := models.GlobalCfg.OVConfigPath + "/server.conf"
 	err := config.SaveToFile("conf/openvpn-server-config.tpl", cfg.Config, destPath)
 	if err != nil {
-		beego.Warning(err)
+		logs.Warning(err)
 		flash.Error(err.Error())
 		flash.Store(&c.Controller)
 		return

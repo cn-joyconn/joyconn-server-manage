@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"../models"
-	"github.com/astaxie/beego"
+	"github.com/beego/beego/v2/core/logs"
+	"openvpn-server-manage/models"
 )
 
 //Cert
@@ -82,7 +82,7 @@ func parseDetails(d string) *Details {
 			case "emailAddress":
 				details.Email = fields[1]
 			default:
-				beego.Warn(fmt.Sprintf("Undefined entry: %s", line))
+				logs.Warn(fmt.Sprintf("Undefined entry: %s", line))
 			}
 		}
 	}
@@ -104,8 +104,8 @@ func CreateCertificate(name string) error {
 	cmd.Dir = models.GlobalCfg.OVConfigPath
 	output, err := cmd.CombinedOutput()
 	if err != nil {
-		beego.Debug(string(output))
-		beego.Error(err)
+		logs.Debug(string(output))
+		logs.Error(err)
 		return err
 	}
 	return nil

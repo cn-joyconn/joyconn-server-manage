@@ -4,7 +4,7 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"openvpn-web-ui/lib/go-openvpn/client/config"
+	"openvpn-server-manage/go-openvpn/server/config"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -16,7 +16,7 @@ func TestNewConfig(t *testing.T) {
 
 func TestTemplateGeneration(t *testing.T) {
 	c := config.New()
-	txt, err := ioutil.ReadFile("./templates/client-config.tpl")
+	txt, err := ioutil.ReadFile("./templates/server-config.tpl")
 	assert.Nil(t, err)
 
 	_, err = config.GetText(string(txt), c)

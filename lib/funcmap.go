@@ -5,57 +5,58 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/astaxie/beego"
+	"github.com/beego/beego/v2/server/web"
+	"github.com/beego/beego/v2/core/logs"
 )
 
 //AddFuncMaps .
 func AddFuncMaps() {
-	beego.AddFuncMap("field_error_message", func(v map[string]map[string]string, key string) map[string]string {
+	web.AddFuncMap("field_error_message", func(v map[string]map[string]string, key string) map[string]string {
 		if val, ok := v[key]; ok {
 			return val
 		}
 		return make(map[string]string)
 	})
-	beego.AddFuncMap("field_error_exist", func(v map[string]map[string]string, key string) bool {
+	web.AddFuncMap("field_error_exist", func(v map[string]map[string]string, key string) bool {
 		if _, ok := v[key]; ok {
 			return true
 		}
 		return false
 	})
-	beego.AddFuncMap("printkb", func(i interface{}) string {
+	web.AddFuncMap("printkb", func(i interface{}) string {
 		switch v := i.(type) {
 		case uint64:
 			return num2str(int64(i.(uint64)/1024), '\u00A0')
 		case int64:
 			return num2str(i.(int64)/1024, '\u00A0')
 		default:
-			beego.Error("Unknown type:", v)
+			logs.Error("Unknown type:", v)
 		}
 		return "Mapping error"
 	})
-	beego.AddFuncMap("printmb", func(i interface{}) string {
+	web.AddFuncMap("printmb", func(i interface{}) string {
 		switch v := i.(type) {
 		case uint64:
 			return num2str(int64(i.(uint64)/1024/1024), '\u00A0')
 		case int64:
 			return num2str(i.(int64)/1024/1024, '\u00A0')
 		default:
-			beego.Error("Unknown type:", v)
+			logs.Error("Unknown type:", v)
 		}
 		return "Mapping error"
 	})
-	beego.AddFuncMap("printmbold", func(i uint64) string {
+	web.AddFuncMap("printmbold", func(i uint64) string {
 		return num2str(int64(i/1024/1024), ' ')
 	})
-	beego.AddFuncMap("printgb", func(i uint64) string {
+	web.AddFuncMap("printgb", func(i uint64) string {
 		return num2str(int64(i/1024/1024/1024), ' ')
 	})
-	beego.AddFuncMap("percent", func(x, y interface{}) string {
-		beego.Notice("Percent", x, y)
+	web.AddFuncMap("percent", func(x, y interface{}) string {
+		logs.Notice("Percent", x, y)
 		zValue := "0"
 		switch v := x.(type) {
 		case string:
-			beego.Error("Not implemented")
+			logs.Error("Not implemented")
 		case int32:
 			if x.(int32) == 0 || y.(int32) == 0 {
 				return zValue
@@ -78,7 +79,7 @@ func AddFuncMaps() {
 			b := float64(y.(uint64))
 			return fmt.Sprintf("%d", int((a/b)*float64(100)))
 		default:
-			beego.Error("Unknown type:", v)
+			logs.Error("Unknown type:", v)
 		}
 		return "Mapping error"
 	})

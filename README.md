@@ -1,4 +1,4 @@
-# OpenVPN-web-ui
+# openvpn-server-manage
 
 ## Summary
 OpenVPN server web administration interface.
@@ -44,7 +44,7 @@ Requirements:
 
 Execute commands
 
-    curl -O https://raw.githubusercontent.com/adamwalach/openvpn-web-ui/master/docs/docker-compose.yml
+    curl -O https://raw.githubusercontent.com/adamwalach/openvpn-server-manage/master/docs/docker-compose.yml
     docker-compose up -d
 
 It starts two docker containers. One with OpenVPN server and second with OpenVPNAdmin web application. Through a docker volume it creates following directory structure:
@@ -84,8 +84,8 @@ Requirements:
 
 Execute commands:
 
-    go get openvpn-web-ui
-    cd $GOPATH/src/openvpn-web-ui
+    go get openvpn-server-manage
+    cd $GOPATH/src/openvpn-server-manage
     bee run -gendoc=true
 
 ## Todo

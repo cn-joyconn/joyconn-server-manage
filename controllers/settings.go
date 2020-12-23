@@ -3,9 +3,10 @@ package controllers
 import (
 	"html/template"
 
-	models "openvpn-web-ui/models"
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/orm"
+	"github.com/beego/beego/v2/server/web"
+	"github.com/beego/beego/v2/core/logs"
+	"github.com/beego/beego/v2/client/orm"
+	models "openvpn-server-manage/models"
 )
 
 type SettingsController struct {
@@ -33,11 +34,11 @@ func (c *SettingsController) Get() {
 func (c *SettingsController) Post() {
 	c.TplName = "settings.html"
 
-	flash := beego.NewFlash()
+	flash := web.NewFlash()
 	settings := models.Settings{Profile: "default"}
 	settings.Read("Profile")
 	if err := c.ParseForm(&settings); err != nil {
-		beego.Warning(err)
+		logs.Warning(err)
 		flash.Error(err.Error())
 		flash.Store(&c.Controller)
 		return

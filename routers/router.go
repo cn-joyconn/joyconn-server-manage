@@ -8,38 +8,38 @@
 package routers
 
 import (
-	controllers "openvpn-web-ui/controllers"
-	"github.com/astaxie/beego"
+	"github.com/beego/beego/v2/server/web"
+	controllers "openvpn-server-manage/controllers"
 )
 
 func init() {
-	beego.SetStaticPath("/swagger", "swagger")
-	beego.Router("/", &controllers.MainController{})
-	beego.Router("/login", &controllers.LoginController{}, "get,post:Login")
-	beego.Router("/logout", &controllers.LoginController{}, "get:Logout")
-	beego.Router("/profile", &controllers.ProfileController{})
-	beego.Router("/settings", &controllers.SettingsController{})
-	beego.Router("/ov/config", &controllers.OVConfigController{})
-	beego.Router("/logs", &controllers.LogsController{})
+	web.SetStaticPath("/swagger", "swagger")
+	web.Router("/", &controllers.MainController{})
+	web.Router("/login", &controllers.LoginController{}, "get,post:Login")
+	web.Router("/logout", &controllers.LoginController{}, "get:Logout")
+	web.Router("/profile", &controllers.ProfileController{})
+	web.Router("/settings", &controllers.SettingsController{})
+	web.Router("/ov/config", &controllers.OVConfigController{})
+	web.Router("/logs", &controllers.LogsController{})
 
-	beego.Include(&controllers.CertificatesController{})
+	web.Include(&controllers.CertificatesController{})
 
-	ns := beego.NewNamespace("/api/v1",
-		beego.NSNamespace("/session",
-			beego.NSInclude(
-				&controllers.APISessionController{},
+	ns := web.NewNamespace("/api/v1",
+			web.NSNamespace("/session",
+				web.NSInclude(
+							&controllers.APISessionController{},
+					),
+				),
+			web.NSNamespace("/sysload",
+				web.NSInclude(
+						&controllers.APISysloadController{},
+					),
 			),
-		),
-		beego.NSNamespace("/sysload",
-			beego.NSInclude(
-				&controllers.APISysloadController{},
+			web.NSNamespace("/signal",
+				web.NSInclude(
+						&controllers.APISignalController{},
+					),
 			),
-		),
-		beego.NSNamespace("/signal",
-			beego.NSInclude(
-				&controllers.APISignalController{},
-			),
-		),
-	)
-	beego.AddNamespace(ns)
+		)
+	web.AddNamespace(ns)
 }

@@ -1,55 +1,56 @@
 package routers
 
 import (
-	"github.com/astaxie/beego"
+	"github.com/beego/beego/v2/server/web"
 )
 
 func init() {
 
-	beego.GlobalControllerRouter["openvpn-web-ui/controllers:APISessionController"] = append(beego.GlobalControllerRouter["openvpn-web-ui/controllers:APISessionController"],
-		beego.ControllerComments{
-			Method: "Get",
-			Router: `/`,
-			AllowHTTPMethods: []string{"get"},
-			Params: nil})
+	web.GlobalControllerRouter["openvpn-server-manage/controllers:APISessionController"] = append(
+		web.GlobalControllerRouter["openvpn-server-manage/controllers:APISessionController"],
+		web.ControllerComments{
+				Method: "Get",
+				Router: `/`,
+				AllowHTTPMethods: []string{"get"},
+				Params: nil})
 
-	beego.GlobalControllerRouter["openvpn-web-ui/controllers:APISessionController"] = append(beego.GlobalControllerRouter["openvpn-web-ui/controllers:APISessionController"],
-		beego.ControllerComments{
+				web.GlobalControllerRouter["openvpn-server-manage/controllers:APISessionController"] = append(web.GlobalControllerRouter["openvpn-server-manage/controllers:APISessionController"],
+				web.ControllerComments{
 			Method: "Kill",
 			Router: `/`,
 			AllowHTTPMethods: []string{"delete"},
 			Params: nil})
 
-	beego.GlobalControllerRouter["openvpn-web-ui/controllers:APISignalController"] = append(beego.GlobalControllerRouter["openvpn-web-ui/controllers:APISignalController"],
-		beego.ControllerComments{
+			web.GlobalControllerRouter["openvpn-server-manage/controllers:APISignalController"] = append(web.GlobalControllerRouter["openvpn-server-manage/controllers:APISignalController"],
+			web.ControllerComments{
 			Method: "Send",
 			Router: `/`,
 			AllowHTTPMethods: []string{"post"},
 			Params: nil})
 
-	beego.GlobalControllerRouter["openvpn-web-ui/controllers:APISysloadController"] = append(beego.GlobalControllerRouter["openvpn-web-ui/controllers:APISysloadController"],
-		beego.ControllerComments{
+			web.GlobalControllerRouter["openvpn-server-manage/controllers:APISysloadController"] = append(web.GlobalControllerRouter["openvpn-server-manage/controllers:APISysloadController"],
+			web.ControllerComments{
 			Method: "Get",
 			Router: `/`,
 			AllowHTTPMethods: []string{"get"},
 			Params: nil})
 
-	beego.GlobalControllerRouter["openvpn-web-ui/controllers:CertificatesController"] = append(beego.GlobalControllerRouter["openvpn-web-ui/controllers:CertificatesController"],
-		beego.ControllerComments{
+			web.GlobalControllerRouter["openvpn-server-manage/controllers:CertificatesController"] = append(web.GlobalControllerRouter["openvpn-server-manage/controllers:CertificatesController"],
+			web.ControllerComments{
 			Method: "Download",
 			Router: `/certificates/:key`,
 			AllowHTTPMethods: []string{"get"},
 			Params: nil})
 
-	beego.GlobalControllerRouter["openvpn-web-ui/controllers:CertificatesController"] = append(beego.GlobalControllerRouter["openvpn-web-ui/controllers:CertificatesController"],
-		beego.ControllerComments{
+			web.GlobalControllerRouter["openvpn-server-manage/controllers:CertificatesController"] = append(web.GlobalControllerRouter["openvpn-server-manage/controllers:CertificatesController"],
+			web.ControllerComments{
 			Method: "Get",
 			Router: `/certificates`,
 			AllowHTTPMethods: []string{"get"},
 			Params: nil})
 
-	beego.GlobalControllerRouter["openvpn-web-ui/controllers:CertificatesController"] = append(beego.GlobalControllerRouter["openvpn-web-ui/controllers:CertificatesController"],
-		beego.ControllerComments{
+			web.GlobalControllerRouter["openvpn-server-manage/controllers:CertificatesController"] = append(web.GlobalControllerRouter["openvpn-server-manage/controllers:CertificatesController"],
+			web.ControllerComments{
 			Method: "Post",
 			Router: `/certificates`,
 			AllowHTTPMethods: []string{"post"},

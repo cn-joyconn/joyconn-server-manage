@@ -1,6 +1,6 @@
 package controllers
 
-import "openvpn-web-ui/lib"
+import "openvpn-server-manage/lib"
 
 //APISysloadController provides system information
 type APISysloadController struct {

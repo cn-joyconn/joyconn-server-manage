@@ -4,8 +4,9 @@ import (
 	"encoding/json"
 	"strings"
 
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/validation"
+	
+	"github.com/beego/beego/v2/core/validation"
+	"github.com/beego/beego/v2/core/logs"
 )
 
 //CreateValidationMap ranslates validation structure to map
@@ -23,7 +24,7 @@ func CreateValidationMap(valid validation.Validation) map[string]map[string]stri
 		  }
 	*/
 	for _, err := range valid.Errors {
-		beego.Notice(err.Key, err.Message)
+		logs.Notice(err.Key, err.Message)
 		k := strings.Split(err.Key, ".")
 		var field, errorType string
 		if len(k) > 1 {
@@ -33,7 +34,7 @@ func CreateValidationMap(valid validation.Validation) map[string]map[string]stri
 			field = err.Key
 			errorType = " "
 		}
-		beego.Error(field)
+		logs.Error(field)
 		if _, ok := v[field]; !ok {
 			v[field] = make(map[string]string)
 		}
@@ -46,19 +47,19 @@ func CreateValidationMap(valid validation.Validation) map[string]map[string]stri
 //Dump any structure as json string
 func Dump(obj interface{}) {
 	result, _ := json.MarshalIndent(obj, "", "\t")
-	beego.Debug(string(result))
+	logs.Debug(string(result))
 }
 
 //CopyStruct serializes src and tries to deserialize it to dst
 func CopyStruct(src interface{}, dst interface{}) error {
 	jsonString, err := json.Marshal(&src)
 	if err != nil {
-		beego.Error("Unable to marshal object")
+		logs.Error("Unable to marshal object")
 		return err
 	}
 
 	if err := json.Unmarshal([]byte(jsonString), &dst); err != nil {
-		beego.Error("Unable to unmarshal object")
+		logs.Error("Unable to unmarshal object")
 		return err
 	}
 

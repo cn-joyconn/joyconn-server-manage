@@ -7,8 +7,8 @@ import (
 
 	passlib "gopkg.in/hlandau/passlib.v1"
 
-	"github.com/astaxie/beego"
-	models "openvpn-web-ui/models"
+	"github.com/beego/beego/v2/server/web"
+	models "openvpn-server-manage/models"
 )
 
 type LoginController struct {
@@ -27,7 +27,7 @@ func (c *LoginController) Login() {
 		return
 	}
 
-	flash := beego.NewFlash()
+	flash := web.NewFlash()
 	login := c.GetString("login")
 	password := c.GetString("password")
 
@@ -47,7 +47,7 @@ func (c *LoginController) Login() {
 
 func (c *LoginController) Logout() {
 	c.DelLogin()
-	flash := beego.NewFlash()
+	flash := web.NewFlash()
 	flash.Success("Success logged out")
 	flash.Store(&c.Controller)
 

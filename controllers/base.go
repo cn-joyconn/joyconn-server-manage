@@ -1,12 +1,12 @@
 package controllers
 
 import (
-	"github.com/astaxie/beego"
-	models "openvpn-web-ui/models"
+	"github.com/beego/beego/v2/server/web"
+	models "openvpn-server-manage/models"
 )
 
 type BaseController struct {
-	beego.Controller
+	web.Controller
 
 	Userinfo *models.User
 	IsLogin  bool
@@ -70,7 +70,8 @@ func (c *BaseController) LoginPath() string {
 
 func (c *BaseController) SetParams() {
 	c.Data["Params"] = make(map[string]string)
-	for k, v := range c.Input() {
+	inputs,_:= c.Input()
+	for k, v := range inputs {
 		c.Data["Params"].(map[string]string)[k] = v[0]
 	}
 }
