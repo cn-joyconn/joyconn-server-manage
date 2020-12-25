@@ -1,5 +1,5 @@
 /data.db
-/openvpn-server-manage*
+/joyconn-server-manage*
 /lastupdate.tmp
 __debug_bin
 go.sum

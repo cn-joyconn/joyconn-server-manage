@@ -5,12 +5,14 @@ import (
 	"os"
 	"strings"
 
+	models "joyconn-server-manage/models"
+	baseController "joyconn-server-manage/controllers/base"
+
 	"github.com/beego/beego/v2/core/logs"
-	models "openvpn-server-manage/models"
 )
 
 type LogsController struct {
-	BaseController
+	baseController.BaseController
 }
 
 func (c *LogsController) NestPrepare() {
@@ -22,7 +24,7 @@ func (c *LogsController) NestPrepare() {
 
 func (c *LogsController) Get() {
 	c.TplName = "logs.html"
-	c.Data["breadcrumbs"] = &BreadCrumbs{
+	c.Data["breadcrumbs"] = &baseController.BreadCrumbs{
 		Title: "Logs",
 	}
 

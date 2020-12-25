@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	mi "openvpn-server-manage/go-openvpn/mi"
+	mi "joyconn-server-manage/go-openvpn/mi"
 
 	"github.com/stretchr/testify/assert"
 )

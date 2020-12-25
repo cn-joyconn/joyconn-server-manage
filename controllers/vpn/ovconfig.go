@@ -1,20 +1,22 @@
-package controllers
+package vpn
 
 import (
 	"html/template"
 
-	config "openvpn-server-manage/go-openvpn/server/config"
-	mi "openvpn-server-manage/go-openvpn/mi"
+	mi "joyconn-server-manage/go-openvpn/mi"
+	config "joyconn-server-manage/go-openvpn/server/config"
 
-	"github.com/beego/beego/v2/server/web"
-	"github.com/beego/beego/v2/core/logs"
+	lib "joyconn-server-manage/lib"
+	models "joyconn-server-manage/models"
+	baseController "joyconn-server-manage/controllers/base"
+
 	"github.com/beego/beego/v2/client/orm"
-	lib "openvpn-server-manage/lib"
-	models "openvpn-server-manage/models"
+	"github.com/beego/beego/v2/core/logs"
+	"github.com/beego/beego/v2/server/web"
 )
 
 type OVConfigController struct {
-	BaseController
+	baseController.BaseController
 }
 
 func (c *OVConfigController) NestPrepare() {
@@ -22,7 +24,7 @@ func (c *OVConfigController) NestPrepare() {
 		c.Ctx.Redirect(302, c.LoginPath())
 		return
 	}
-	c.Data["breadcrumbs"] = &BreadCrumbs{
+	c.Data["breadcrumbs"] = &baseController.BreadCrumbs{
 		Title: "OpenVPN config",
 	}
 }

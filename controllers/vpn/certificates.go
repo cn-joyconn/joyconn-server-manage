@@ -1,4 +1,4 @@
-package controllers
+package vpn
 
 import (
 	"archive/zip"
@@ -8,14 +8,15 @@ import (
 	"path/filepath"
 	"time"
 
-	config "openvpn-server-manage/go-openvpn/client/config"
+	config "joyconn-server-manage/go-openvpn/client/config"
 
-	
-	"github.com/beego/beego/v2/server/web"
+	lib "joyconn-server-manage/lib"
+	models "joyconn-server-manage/models"
+	baseController "joyconn-server-manage/controllers/base"
+
 	"github.com/beego/beego/v2/core/logs"
 	"github.com/beego/beego/v2/core/validation"
-	lib "openvpn-server-manage/lib"
-	models "openvpn-server-manage/models"
+	"github.com/beego/beego/v2/server/web"
 )
 
 type NewCertParams struct {
@@ -23,7 +24,7 @@ type NewCertParams struct {
 }
 
 type CertificatesController struct {
-	BaseController
+	baseController.BaseController
 }
 
 func (c *CertificatesController) NestPrepare() {
@@ -31,7 +32,7 @@ func (c *CertificatesController) NestPrepare() {
 		c.Ctx.Redirect(302, c.LoginPath())
 		return
 	}
-	c.Data["breadcrumbs"] = &BreadCrumbs{
+	c.Data["breadcrumbs"] = &baseController.BreadCrumbs{
 		Title: "Certificates",
 	}
 }

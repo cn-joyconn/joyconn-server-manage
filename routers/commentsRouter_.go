@@ -7,7 +7,7 @@ import (
 
 func init() {
 
-    beego.GlobalControllerRouter["openvpn-server-manage/controllers:APISessionController"] = append(beego.GlobalControllerRouter["openvpn-server-manage/controllers:APISessionController"],
+    beego.GlobalControllerRouter["joyconn-server-manage/controllers/base:APISessionController"] = append(beego.GlobalControllerRouter["joyconn-server-manage/controllers/base:APISessionController"],
         beego.ControllerComments{
             Method: "Get",
             Router: "/",
@@ -16,7 +16,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["openvpn-server-manage/controllers:APISessionController"] = append(beego.GlobalControllerRouter["openvpn-server-manage/controllers:APISessionController"],
+    beego.GlobalControllerRouter["joyconn-server-manage/controllers/base:APISessionController"] = append(beego.GlobalControllerRouter["joyconn-server-manage/controllers/base:APISessionController"],
         beego.ControllerComments{
             Method: "Kill",
             Router: "/",
@@ -25,7 +25,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["openvpn-server-manage/controllers:APISignalController"] = append(beego.GlobalControllerRouter["openvpn-server-manage/controllers:APISignalController"],
+    beego.GlobalControllerRouter["joyconn-server-manage/controllers/base:APISignalController"] = append(beego.GlobalControllerRouter["joyconn-server-manage/controllers/base:APISignalController"],
         beego.ControllerComments{
             Method: "Send",
             Router: "/",
@@ -34,7 +34,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["openvpn-server-manage/controllers:APISysloadController"] = append(beego.GlobalControllerRouter["openvpn-server-manage/controllers:APISysloadController"],
+    beego.GlobalControllerRouter["joyconn-server-manage/controllers/base:APISysloadController"] = append(beego.GlobalControllerRouter["joyconn-server-manage/controllers/base:APISysloadController"],
         beego.ControllerComments{
             Method: "Get",
             Router: "/",
@@ -43,7 +43,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["openvpn-server-manage/controllers:CertificatesController"] = append(beego.GlobalControllerRouter["openvpn-server-manage/controllers:CertificatesController"],
+    beego.GlobalControllerRouter["joyconn-server-manage/controllers/vpn:CertificatesController"] = append(beego.GlobalControllerRouter["joyconn-server-manage/controllers/vpn:CertificatesController"],
         beego.ControllerComments{
             Method: "Get",
             Router: "/certificates",
@@ -52,7 +52,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["openvpn-server-manage/controllers:CertificatesController"] = append(beego.GlobalControllerRouter["openvpn-server-manage/controllers:CertificatesController"],
+    beego.GlobalControllerRouter["joyconn-server-manage/controllers/vpn:CertificatesController"] = append(beego.GlobalControllerRouter["joyconn-server-manage/controllers/vpn:CertificatesController"],
         beego.ControllerComments{
             Method: "Post",
             Router: "/certificates",
@@ -61,7 +61,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["openvpn-server-manage/controllers:CertificatesController"] = append(beego.GlobalControllerRouter["openvpn-server-manage/controllers:CertificatesController"],
+    beego.GlobalControllerRouter["joyconn-server-manage/controllers/vpn:CertificatesController"] = append(beego.GlobalControllerRouter["joyconn-server-manage/controllers/vpn:CertificatesController"],
         beego.ControllerComments{
             Method: "Download",
             Router: "/certificates/:key",

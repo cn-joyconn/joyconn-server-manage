@@ -1,9 +1,10 @@
 package main
 
 import (
+	lib "joyconn-server-manage/lib"
+	_ "joyconn-server-manage/routers"
+
 	"github.com/beego/beego/v2/server/web"
-	lib "openvpn-server-manage/lib"
-	_ "openvpn-server-manage/routers"
 )
 
 func main() {

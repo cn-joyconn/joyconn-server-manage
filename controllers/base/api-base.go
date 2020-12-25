@@ -1,4 +1,4 @@
-package controllers
+package base
 
 import (
 	"github.com/beego/beego/v2/core/logs"

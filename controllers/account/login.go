@@ -1,4 +1,4 @@
-package controllers
+package account
 
 import (
 	"errors"
@@ -7,12 +7,14 @@ import (
 
 	passlib "gopkg.in/hlandau/passlib.v1"
 
+	models "joyconn-server-manage/models"
+	baseController "joyconn-server-manage/controllers/base"
+
 	"github.com/beego/beego/v2/server/web"
-	models "openvpn-server-manage/models"
 )
 
 type LoginController struct {
-	BaseController
+	baseController.BaseController
 }
 
 func (c *LoginController) Login() {

@@ -3,14 +3,16 @@ package controllers
 import (
 	"html/template"
 
-	"github.com/beego/beego/v2/server/web"
-	"github.com/beego/beego/v2/core/logs"
+	models "joyconn-server-manage/models"
+	baseController "joyconn-server-manage/controllers/base"
+
 	"github.com/beego/beego/v2/client/orm"
-	models "openvpn-server-manage/models"
+	"github.com/beego/beego/v2/core/logs"
+	"github.com/beego/beego/v2/server/web"
 )
 
 type SettingsController struct {
-	BaseController
+	baseController.BaseController
 }
 
 func (c *SettingsController) NestPrepare() {
@@ -18,7 +20,7 @@ func (c *SettingsController) NestPrepare() {
 		c.Ctx.Redirect(302, c.LoginPath())
 		return
 	}
-	c.Data["breadcrumbs"] = &BreadCrumbs{
+	c.Data["breadcrumbs"] = &baseController.BreadCrumbs{
 		Title: "Settings",
 	}
 }

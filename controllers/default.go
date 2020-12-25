@@ -1,15 +1,17 @@
 package controllers
 
 import (
-	"github.com/beego/beego/v2/core/logs"
-	lib "openvpn-server-manage/lib"
-	models "openvpn-server-manage/models"
+	lib "joyconn-server-manage/lib"
+	models "joyconn-server-manage/models"
+	baseController "joyconn-server-manage/controllers/base"
 
-	mi "openvpn-server-manage/go-openvpn/mi"
+	"github.com/beego/beego/v2/core/logs"
+
+	mi "joyconn-server-manage/go-openvpn/mi"
 )
 
 type MainController struct {
-	BaseController
+	baseController.BaseController
 }
 
 func (c *MainController) NestPrepare() {
@@ -17,7 +19,7 @@ func (c *MainController) NestPrepare() {
 		c.Ctx.Redirect(302, c.LoginPath())
 		return
 	}
-	c.Data["breadcrumbs"] = &BreadCrumbs{
+	c.Data["breadcrumbs"] = &baseController.BreadCrumbs{
 		Title: "Status",
 	}
 }

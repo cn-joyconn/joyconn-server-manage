@@ -1,10 +1,10 @@
-package controllers
+package base
 
 import (
 	"encoding/json"
 
-	mi "openvpn-server-manage/go-openvpn/mi"
-	models "openvpn-server-manage/models"
+	mi "joyconn-server-manage/go-openvpn/mi"
+	models "joyconn-server-manage/models"
 )
 
 //APISignalController sends signals to OpenVPN daemon

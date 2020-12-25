@@ -4,7 +4,7 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"openvpn-server-manage/go-openvpn/client/config"
+	"joyconn-server-manage/go-openvpn/client/config"
 
 	"github.com/stretchr/testify/assert"
 )

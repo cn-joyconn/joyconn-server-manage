@@ -1,6 +1,6 @@
-package controllers
+package base
 
-import "openvpn-server-manage/lib"
+import "joyconn-server-manage/lib"
 
 //APISysloadController provides system information
 type APISysloadController struct {

@@ -1,8 +1,9 @@
-package controllers
+package base
 
 import (
+	models "joyconn-server-manage/models"
+
 	"github.com/beego/beego/v2/server/web"
-	models "openvpn-server-manage/models"
 )
 
 type BaseController struct {

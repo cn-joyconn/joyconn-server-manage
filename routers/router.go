@@ -8,36 +8,45 @@
 package routers
 
 import (
+	"strings"
+	"unicode/utf8"
 	"github.com/beego/beego/v2/server/web"
-	controllers "openvpn-server-manage/controllers"
+	"github.com/beego/beego/v2/core/config"
+
+	controllers "joyconn-server-manage/controllers"
+	baseController "joyconn-server-manage/controllers/base"
+	accountController "joyconn-server-manage/controllers/account"
+	appController "joyconn-server-manage/controllers/app"
+	vpnController "joyconn-server-manage/controllers/vpn"
 )
 
 func init() {
+	// val, err := config.String("ContextPath")
+	// if (err!=nil){
+	// 	val=""
+	// }else if strings.HasSuffix(val, "/"){
+	// 	val=val[:utf8.RuneCountInString(val) -1]
+	// }
 	web.SetStaticPath("/swagger", "swagger")
 	web.Router("/", &controllers.MainController{})
-	web.Router("/login", &controllers.LoginController{}, "get,post:Login")
-	web.Router("/logout", &controllers.LoginController{}, "get:Logout")
-	web.Router("/profile", &controllers.ProfileController{})
-	web.Router("/settings", &controllers.SettingsController{})
-	web.Router("/ov/config", &controllers.OVConfigController{})
-	web.Router("/logs", &controllers.LogsController{})
+	web.Router("/login", &accountController.LoginController{}, "get,post:Login")
+	web.Router("/logout", &accountController.LoginController{}, "get:Logout")
+	web.Router("/profile", &accountController.ProfileController{})
+	web.Router("/settings", &appController.SettingsController{})
+	web.Router("/ov/config", &vpnController.OVConfigController{})
+	web.Router("/logs", &appController.LogsController{})
 
-	web.Include(&controllers.CertificatesController{})
+	web.Include(&vpnController.CertificatesController{})
 
 	ns := web.NewNamespace("/api/v1",
-			web.NSNamespace("/session",
-				web.NSInclude(
-							&controllers.APISessionController{},
-					),
-				),
 			web.NSNamespace("/sysload",
 				web.NSInclude(
-						&controllers.APISysloadController{},
+						&baseController.APISysloadController{},
 					),
 			),
 			web.NSNamespace("/signal",
 				web.NSInclude(
-						&controllers.APISignalController{},
+						&baseController.APISignalController{},
 					),
 			),
 		)

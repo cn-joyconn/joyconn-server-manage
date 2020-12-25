@@ -1,4 +1,4 @@
-module openvpn-server-manage
+module joyconn-server-manage
 
 go 1.13
 

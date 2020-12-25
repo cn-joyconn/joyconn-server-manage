@@ -3,16 +3,16 @@ package models
 import (
 	"os"
 
-	config "openvpn-server-manage/go-openvpn/server/config"
+	config "joyconn-server-manage/go-openvpn/server/config"
 
-	"github.com/beego/beego/v2/server/web"
-	"github.com/beego/beego/v2/core/logs"
 	"github.com/beego/beego/v2/client/orm"
+	"github.com/beego/beego/v2/core/logs"
+	"github.com/beego/beego/v2/server/web"
 	passlib "gopkg.in/hlandau/passlib.v1"
 )
 
 /**
-全局配置 
+全局配置
 */
 var GlobalCfg Settings
 

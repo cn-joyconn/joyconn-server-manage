@@ -1,7 +1,7 @@
 package models
 
 import (
-	config "openvpn-server-manage/go-openvpn/server/config"
+	config "joyconn-server-manage/go-openvpn/server/config"
 
 	"github.com/beego/beego/v2/client/orm"
 )
